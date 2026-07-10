@@ -12,8 +12,9 @@
             --olive-dark: #4b5320;     /* Verde olivo profundo */
             --olive-light: #7b855a;    /* Verde olivo suave */
             --gold-primary: #cca360;   /* Dorado elegante */
+            --gold-light: #e6c88b;     /* Dorado brillante para destellos */
             --text-dark: #2c3022;      /* Texto oscuro con tinte olivo */
-            --text-muted: #626850;     /* Texto secundario */
+            --text-muted: #5a614a;     /* Texto secundario */
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -25,56 +26,55 @@
         }
 
         /* -------------------------------------------
-           NUEVA PANTALLA DE ENTRADA (WELCOME SCREEN)
+           PANTALLA DE ENTRADA (WELCOME SCREEN)
            ------------------------------------------- */
         #welcome-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--bg-main); z-index: 1000;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            background: radial-gradient(circle at center, #ffffff 0%, var(--bg-main) 100%);
+            z-index: 1000; display: flex; flex-direction: column; justify-content: center; align-items: center;
             transition: opacity 1.2s ease-in-out, transform 1.2s ease-in-out;
         }
 
-        #welcome-screen.open {
-            opacity: 0; pointer-events: none; transform: scale(1.05);
-        }
+        #welcome-screen.open { opacity: 0; pointer-events: none; transform: scale(1.05); }
 
         .welcome-border {
-            position: relative; width: 85%; max-width: 400px; padding: 50px 30px;
+            position: relative; width: 90%; max-width: 450px; padding: 60px 40px;
             text-align: center; border: 1px solid var(--gold-primary);
-            background: rgba(255, 255, 255, 0.4); border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(75, 83, 32, 0.05);
+            background: rgba(255, 255, 255, 0.6); border-radius: 8px;
+            box-shadow: 0 15px 40px rgba(75, 83, 32, 0.08);
+            backdrop-filter: blur(5px);
         }
 
         .welcome-border::before {
-            content: ''; position: absolute; top: 5px; left: 5px; right: 5px; bottom: 5px;
-            border: 1px solid rgba(204, 163, 96, 0.3); border-radius: 4px; pointer-events: none;
+            content: ''; position: absolute; top: 8px; left: 8px; right: 8px; bottom: 8px;
+            border: 1px solid rgba(204, 163, 96, 0.4); border-radius: 4px; pointer-events: none;
         }
 
         .welcome-tag {
-            font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 4px;
-            color: var(--olive-light); text-transform: uppercase; margin-bottom: 15px;
+            font-family: 'Cinzel', serif; font-size: 14px; letter-spacing: 5px;
+            color: var(--olive-light); text-transform: uppercase; margin-bottom: 20px; font-weight: 600;
         }
 
         .welcome-name {
-            font-family: 'Pinyon Script', cursive; font-size: 60px;
-            color: var(--olive-dark); margin-bottom: 10px; line-height: 1;
+            font-family: 'Pinyon Script', cursive; font-size: 75px;
+            color: var(--olive-dark); margin-bottom: 15px; line-height: 1; text-shadow: 1px 1px 2px rgba(204,163,96,0.2);
         }
 
         .welcome-date {
-            font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 2px;
-            color: var(--text-muted); margin-bottom: 40px; text-transform: uppercase;
+            font-family: 'Montserrat', sans-serif; font-size: 13px; letter-spacing: 3px;
+            color: var(--text-muted); margin-bottom: 45px; text-transform: uppercase; font-weight: 500;
         }
 
         .btn-enter {
-            background: var(--olive-dark); color: #fff; border: none;
-            padding: 14px 35px; font-family: 'Cinzel', serif; font-size: 12px;
-            letter-spacing: 3px; text-transform: uppercase; cursor: pointer;
-            transition: all 0.4s ease; border-radius: 3px; font-weight: 600;
+            background: var(--olive-dark); color: #fff; border: 1px solid var(--olive-dark);
+            padding: 16px 40px; font-family: 'Cinzel', serif; font-size: 14px;
+            letter-spacing: 4px; text-transform: uppercase; cursor: pointer;
+            transition: all 0.4s ease; border-radius: 4px; font-weight: 600;
         }
 
         .btn-enter:hover {
-            background: var(--gold-primary); transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(204, 163, 96, 0.4);
+            background: transparent; color: var(--olive-dark); transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(75, 83, 32, 0.15);
         }
 
         /* -------------------------------------------
@@ -82,90 +82,123 @@
            ------------------------------------------- */
         #main-invitation {
             min-height: 100vh;
-            /* Si tienes una imagen de fondo, asegúrate de que esté en la ruta correcta */
             background: url('assets/imagen.jpg') no-repeat center center; background-size: cover;
             background-attachment: fixed; position: relative;
             display: flex; flex-direction: column; align-items: center;
-            padding: 60px 20px; opacity: 0; transform: translateY(20px);
+            padding: 80px 20px; opacity: 0; transform: translateY(20px);
             transition: opacity 1.5s ease-out 0.4s, transform 1.5s ease-out 0.4s;
         }
 
         body.content-active #main-invitation { opacity: 1; transform: translateY(0); }
 
         .invitation-frame {
-            max-width: 500px; width: 100%; padding: 50px 30px; text-align: center;
-            position: relative; background: rgba(249, 248, 245, 0.95);
-            box-shadow: 0 20px 50px rgba(44, 48, 34, 0.1);
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            border-radius: 8px; border: 1px solid rgba(204, 163, 96, 0.4);
+            max-width: 550px; width: 100%; padding: 60px 40px; text-align: center;
+            position: relative; background: rgba(249, 248, 245, 0.96);
+            box-shadow: 0 25px 60px rgba(44, 48, 34, 0.15);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border-radius: 12px; border: 2px solid rgba(204, 163, 96, 0.3);
             overflow: hidden; z-index: 2;
         }
 
-        .section-tag { font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 4px; color: var(--olive-light); text-transform: uppercase; margin-bottom: 10px; font-weight: 600; }
-        .main-title { font-family: 'Pinyon Script', cursive; font-size: 65px; color: var(--olive-dark); line-height: 1.1; }
-        .sub-title { font-family: 'Cinzel', serif; font-size: 14px; letter-spacing: 2px; color: var(--gold-primary); margin-bottom: 25px; font-weight: 600; }
-        
-        .phrase { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 19px; color: var(--text-dark); line-height: 1.6; margin-bottom: 25px; padding: 0 10px; }
-        .verse { font-size: 17px; color: var(--text-muted); line-height: 1.5; margin-bottom: 35px; }
-        .verse-ref { display: block; font-family: 'Montserrat', sans-serif; font-size: 11px; font-style: normal; text-transform: uppercase; letter-spacing: 2px; margin-top: 10px; color: var(--gold-primary); }
-        
-        .divider { width: 80px; height: 1px; background: linear-gradient(to right, transparent, var(--gold-primary), transparent); margin: 35px auto; }
-
-        .info-block { margin-bottom: 30px; }
-        .info-label { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 3px; color: var(--olive-light); text-transform: uppercase; margin-bottom: 10px; font-weight: 600; }
-        
-        .name-main { font-family: 'Cinzel', serif; font-size: 16px; font-weight: 600; color: var(--text-dark); letter-spacing: 1px; margin-bottom: 6px; }
-        
-        .info-value-main { font-family: 'Cinzel', serif; font-size: 20px; font-weight: 600; color: var(--olive-dark); letter-spacing: 2px; }
-        .info-value-sub { font-family: 'Montserrat', sans-serif; font-size: 13px; color: var(--text-muted); margin-top: 5px; letter-spacing: 1px; line-height: 1.5; }
-
-        .countdown-grid { display: flex; justify-content: center; gap: 10px; margin: 25px auto 10px auto; max-width: 380px; }
-        .countdown-item { flex: 1; background: rgba(255, 255, 255, 0.6); border: 1px solid rgba(204, 163, 96, 0.3); padding: 15px 5px; border-radius: 4px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
-        .countdown-number { font-family: 'Cinzel', serif; font-size: 22px; font-weight: 700; color: var(--olive-dark); display: block; margin-bottom: 3px; }
-        .countdown-label { font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: var(--olive-light); font-weight: 600; }
-
-        .map-card { margin-top: 15px; background: rgba(255, 255, 255, 0.5); padding: 20px 15px; border-radius: 6px; text-align: center; border: 1px solid rgba(204,163,96,0.2); }
-        .location-img { width: 100%; height: 180px; object-fit: cover; border-radius: 4px; margin-bottom: 15px; border: 1px solid rgba(204, 163, 96, 0.3); }
-
-        .btn-link {
-            display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 25px;
-            background: transparent; color: var(--olive-dark); border: 1px solid var(--olive-dark); font-family: 'Cinzel', serif;
-            font-size: 11px; letter-spacing: 2px; text-decoration: none; text-transform: uppercase; cursor: pointer;
-            transition: all 0.4s ease; font-weight: 600; border-radius: 3px; width: 100%;
+        /* Ornamentos decorativos */
+        .ornament { font-size: 24px; color: var(--gold-primary); margin: 15px 0; opacity: 0.7; }
+        .corner-tl, .corner-tr, .corner-bl, .corner-br {
+            position: absolute; width: 40px; height: 40px; border: 2px solid var(--gold-primary); opacity: 0.4;
         }
-        .btn-link:hover { background: var(--olive-dark); color: #ffffff; }
+        .corner-tl { top: 15px; left: 15px; border-right: none; border-bottom: none; }
+        .corner-tr { top: 15px; right: 15px; border-left: none; border-bottom: none; }
+        .corner-bl { bottom: 15px; left: 15px; border-right: none; border-top: none; }
+        .corner-br { bottom: 15px; right: 15px; border-left: none; border-top: none; }
 
-        .btn-whatsapp {
-            display: inline-flex; align-items: center; justify-content: center; padding: 16px 30px;
-            background: var(--olive-dark); color: #ffffff; border: 1px solid var(--olive-dark); font-family: 'Cinzel', serif;
-            font-size: 12px; letter-spacing: 3px; text-decoration: none; text-transform: uppercase; cursor: pointer;
-            transition: all 0.4s ease; font-weight: 600; border-radius: 3px; width: 100%; max-width: 320px; margin: 0 auto;
+        /* Clases de animación en scroll */
+        .animate-on-scroll {
+            opacity: 0; transform: translateY(35px);
+            transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1), transform 0.9s cubic-bezier(0.25, 1, 0.5, 1);
         }
-        .btn-whatsapp:hover { background: transparent; color: var(--olive-dark); }
+        .animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
+        .delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; } .delay-3 { transition-delay: 0.3s; }
+
+        /* Textos Generales (Agrandados) */
+        .section-tag { font-family: 'Cinzel', serif; font-size: 15px; letter-spacing: 5px; color: var(--olive-light); text-transform: uppercase; margin-bottom: 15px; font-weight: 700; }
+        .main-title { font-family: 'Pinyon Script', cursive; font-size: 85px; color: var(--olive-dark); line-height: 1.1; text-shadow: 1px 1px 3px rgba(0,0,0,0.05); }
+        .sub-title { font-family: 'Cinzel', serif; font-size: 16px; letter-spacing: 3px; color: var(--gold-primary); margin-bottom: 30px; font-weight: 700; }
+        
+        .phrase { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 24px; color: var(--text-dark); line-height: 1.5; margin-bottom: 30px; padding: 0 15px; }
+        .verse { font-size: 21px; color: var(--text-muted); line-height: 1.6; margin-bottom: 40px; }
+        .verse-ref { display: block; font-family: 'Montserrat', sans-serif; font-size: 12px; font-style: normal; text-transform: uppercase; letter-spacing: 3px; margin-top: 15px; color: var(--gold-primary); font-weight: 600; }
+        
+        .divider { width: 100px; height: 1.5px; background: linear-gradient(to right, transparent, var(--gold-primary), transparent); margin: 40px auto; }
+
+        .info-block { margin-bottom: 40px; }
+        .info-label { font-family: 'Cinzel', serif; font-size: 14px; letter-spacing: 4px; color: var(--olive-light); text-transform: uppercase; margin-bottom: 15px; font-weight: 700; }
+        
+        .name-main { font-family: 'Cinzel', serif; font-size: 22px; font-weight: 600; color: var(--text-dark); letter-spacing: 1px; margin-bottom: 8px; }
+        
+        .info-value-main { font-family: 'Cinzel', serif; font-size: 26px; font-weight: 700; color: var(--olive-dark); letter-spacing: 3px; }
+        .info-value-sub { font-family: 'Montserrat', sans-serif; font-size: 15px; color: var(--text-muted); margin-top: 8px; letter-spacing: 1px; line-height: 1.6; }
+
+        /* WIDGET DE CALENDARIO */
+        .calendar-widget {
+            background: #ffffff; border: 1px solid rgba(204, 163, 96, 0.4); border-radius: 8px;
+            padding: 20px; max-width: 320px; margin: 0 auto 25px auto; box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+        }
+        .calendar-month { font-family: 'Cinzel', serif; font-size: 18px; font-weight: 700; color: var(--olive-dark); text-transform: uppercase; margin-bottom: 15px; letter-spacing: 2px; }
+        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; font-family: 'Montserrat', sans-serif; font-size: 13px; color: var(--text-muted); }
+        .calendar-day-name { font-weight: 600; color: var(--gold-primary); font-size: 11px; margin-bottom: 5px; }
+        .calendar-day { padding: 6px 0; border-radius: 50%; display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; margin: auto; }
+        .calendar-day.highlight { background-color: var(--olive-dark); color: #ffffff; font-weight: 700; box-shadow: 0 0 10px rgba(75,83,32,0.4); transform: scale(1.1); border: 2px solid var(--gold-primary); }
+        .calendar-day.empty { visibility: hidden; }
+
+        /* CUENTA REGRESIVA */
+        .countdown-grid { display: flex; justify-content: center; gap: 15px; margin: 30px auto 10px auto; max-width: 420px; }
+        .countdown-item { flex: 1; background: rgba(255, 255, 255, 0.7); border: 1px solid rgba(204, 163, 96, 0.4); padding: 18px 5px; border-radius: 6px; box-shadow: 0 5px 15px rgba(0,0,0,0.04); }
+        .countdown-number { font-family: 'Cinzel', serif; font-size: 28px; font-weight: 700; color: var(--olive-dark); display: block; margin-bottom: 5px; }
+        .countdown-label { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--olive-light); font-weight: 700; }
+
+        .map-card { margin-top: 20px; background: rgba(255, 255, 255, 0.6); padding: 25px 20px; border-radius: 8px; text-align: center; border: 1px solid rgba(204,163,96,0.3); }
+        .location-img { width: 100%; height: 220px; object-fit: cover; border-radius: 6px; margin-bottom: 20px; border: 1px solid rgba(204, 163, 96, 0.4); }
+
+        /* BOTONES */
+        .btn-action {
+            display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 16px 30px;
+            background: transparent; color: var(--olive-dark); border: 1.5px solid var(--olive-dark); font-family: 'Cinzel', serif;
+            font-size: 13px; letter-spacing: 3px; text-decoration: none; text-transform: uppercase; cursor: pointer;
+            transition: all 0.4s ease; font-weight: 700; border-radius: 4px; width: 100%;
+        }
+        .btn-action:hover { background: var(--olive-dark); color: #ffffff; box-shadow: 0 5px 15px rgba(75,83,32,0.2); }
+
+        .btn-solid {
+            background: var(--olive-dark); color: #ffffff; border: 1.5px solid var(--olive-dark);
+        }
+        .btn-solid:hover { background: transparent; color: var(--olive-dark); }
 
         /* Botón Sticky de Audio */
         #audio-btn {
-            position: fixed; bottom: 25px; right: 25px; width: 50px; height: 50px;
+            position: fixed; bottom: 25px; right: 25px; width: 55px; height: 55px;
             background-color: var(--olive-dark); border-radius: 50%; display: flex; justify-content: center; align-items: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15); cursor: pointer; z-index: 999;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2); cursor: pointer; z-index: 999;
             opacity: 0; visibility: hidden; transition: all 0.4s ease; border: 2px solid var(--gold-primary);
         }
         #audio-btn.visible { opacity: 1; visibility: visible; }
-        #audio-btn svg { width: 20px; height: 20px; fill: #ffffff; }
-        #audio-btn:hover { transform: scale(1.05); background-color: var(--gold-primary); border-color: var(--olive-dark); }
+        #audio-btn svg { width: 22px; height: 22px; fill: #ffffff; }
+        #audio-btn:hover { transform: scale(1.1); background-color: var(--gold-primary); border-color: var(--olive-dark); }
 
-        .flower-petal { position: absolute; background-color: rgba(204, 163, 96, 0.6); border-radius: 150% 0 150% 0; pointer-events: none; animation: float-up infinite ease-in; opacity: 0; z-index: 1; }
-
-        @keyframes float-up {
-            0% { transform: translateY(0) translateX(0) rotate(0deg) scale(0.5); opacity: 0; }
-            15% { opacity: 0.8; } 85% { opacity: 0.8; }
-            100% { transform: translateY(-100vh) translateX(50px) rotate(360deg) scale(1); opacity: 0; }
+        /* Efecto Destellos (Sparkles) */
+        .sparkle {
+            position: absolute; background-color: var(--gold-light); border-radius: 50%; pointer-events: none;
+            box-shadow: 0 0 8px 2px rgba(230, 200, 139, 0.6); animation: twinkle float-up infinite ease-in-out; opacity: 0; z-index: 1;
         }
 
-        @media (max-width: 400px) {
-            .welcome-name { font-size: 50px; }
-            .main-title { font-size: 55px; }
-            .invitation-frame { padding: 40px 20px; }
+        @keyframes twinkle { 0%, 100% { opacity: 0; transform: scale(0.5); } 50% { opacity: 0.8; transform: scale(1.2); } }
+        @keyframes float-up-sparkle { 0% { transform: translateY(0); } 100% { transform: translateY(-100vh); } }
+
+        @media (max-width: 450px) {
+            .welcome-name { font-size: 60px; }
+            .main-title { font-size: 70px; }
+            .invitation-frame { padding: 50px 25px; }
+            .phrase { font-size: 20px; }
+            .info-value-main { font-size: 22px; }
+            .name-main { font-size: 18px; }
         }
     </style>
 </head>
@@ -182,7 +215,7 @@
         <svg id="icon-play" viewBox="0 0 24 24" style="display: none;"><path d="M8 5v14l11-7z"/></svg>
     </div>
 
-    <!-- PANTALLA DE ENTRADA NUEVA (Sustituye al Sobre) -->
+    <!-- PANTALLA DE ENTRADA -->
     <div id="welcome-screen">
         <div class="welcome-border">
             <div class="welcome-tag">Mi Bautizo</div>
@@ -193,106 +226,142 @@
     </div>
 
     <main id="main-invitation">
-        <div id="lanterns-container" style="position: absolute; top:0; left:0; width:100%; height:100%; overflow:hidden; pointer-events:none; z-index:1;"></div>
+        <!-- Contenedor para los destellos -->
+        <div id="sparkles-container" style="position: absolute; top:0; left:0; width:100%; height:100%; overflow:hidden; pointer-events:none; z-index:1;"></div>
 
         <div class="invitation-frame">
-            <div class="section-tag">Mi Bautizo</div>
-            
-            <p class="phrase" style="margin-top: 15px;">Con la bendición de Dios y el amor de nuestra familia, te invitamos a celebrar el Santo Bautizo de nuestro amado hijo.</p>
+            <!-- Ornamentos en las esquinas -->
+            <div class="corner-tl"></div><div class="corner-tr"></div>
+            <div class="corner-bl"></div><div class="corner-br"></div>
 
-            <h1 class="main-title">Emmanuel</h1>
-            <div class="sub-title">~ Dios con nosotros ~</div>
+            <div class="section-tag animate-on-scroll">Mi Bautizo</div>
             
-            <p class="phrase verse">
+            <p class="phrase animate-on-scroll delay-1" style="margin-top: 20px;">Con la bendición de Dios y el amor de nuestra familia, te invitamos a celebrar el Santo Bautizo de nuestro amado hijo.</p>
+
+            <h1 class="main-title animate-on-scroll delay-2">Emmanuel</h1>
+            <div class="sub-title animate-on-scroll delay-3">~ Dios con nosotros ~</div>
+            
+            <div class="ornament animate-on-scroll">✧</div>
+
+            <p class="phrase verse animate-on-scroll">
                 “Tú fuiste amado y planificado en el cielo y en la mente de Dios, para bendición a muchos aquí en la tierra”
                 <span class="verse-ref">- Jeremías 1:5 -</span>
             </p>
 
-            <div class="divider"></div>
+            <div class="divider animate-on-scroll"></div>
             
             <!-- SECCIÓN PADRES Y PADRINOS -->
-            <div class="info-block">
+            <div class="info-block animate-on-scroll">
                 <div class="info-label">Mis Padres</div>
                 <div class="name-main">Santiago Olvera Gomez</div>
                 <div class="name-main">Ingrid Rodríguez Sarabia</div>
             </div>
 
-            <div class="info-block" style="margin-top: 25px;">
+            <div class="info-block animate-on-scroll delay-1" style="margin-top: 35px;">
                 <div class="info-label">Mis Padrinos</div>
                 <div class="name-main">Francisco Castillo</div>
                 <div class="name-main">Karen Gracia</div>
             </div>
 
-            <div class="divider"></div>
+            <div class="divider animate-on-scroll"></div>
+
+            <!-- EVENTO Y CALENDARIO WIDGET -->
+            <div class="section-tag animate-on-scroll">Reserva la Fecha</div>
+            
+            <div class="calendar-widget animate-on-scroll delay-1">
+                <div class="calendar-month">Agosto 2026</div>
+                <div class="calendar-grid">
+                    <div class="calendar-day-name">D</div><div class="calendar-day-name">L</div><div class="calendar-day-name">M</div><div class="calendar-day-name">M</div><div class="calendar-day-name">J</div><div class="calendar-day-name">V</div><div class="calendar-day-name">S</div>
+                    <!-- Generando dias vacios para alinear Agosto 2026 (empieza en sabado) -->
+                    <div class="calendar-day empty"></div><div class="calendar-day empty"></div><div class="calendar-day empty"></div><div class="calendar-day empty"></div><div class="calendar-day empty"></div><div class="calendar-day empty"></div>
+                    <div class="calendar-day">1</div><div class="calendar-day">2</div><div class="calendar-day">3</div><div class="calendar-day">4</div><div class="calendar-day">5</div><div class="calendar-day">6</div><div class="calendar-day">7</div>
+                    <div class="calendar-day highlight">8</div><div class="calendar-day">9</div><div class="calendar-day">10</div><div class="calendar-day">11</div><div class="calendar-day">12</div><div class="calendar-day">13</div><div class="calendar-day">14</div>
+                    <div class="calendar-day">15</div><div class="calendar-day">16</div><div class="calendar-day">17</div><div class="calendar-day">18</div><div class="calendar-day">19</div><div class="calendar-day">20</div><div class="calendar-day">21</div>
+                    <div class="calendar-day">22</div><div class="calendar-day">23</div><div class="calendar-day">24</div><div class="calendar-day">25</div><div class="calendar-day">26</div><div class="calendar-day">27</div><div class="calendar-day">28</div>
+                    <div class="calendar-day">29</div><div class="calendar-day">30</div><div class="calendar-day">31</div>
+                </div>
+            </div>
+
+            <div class="animate-on-scroll delay-2" style="max-width: 320px; margin: 0 auto 40px auto;">
+                <button onclick="downloadICS()" class="btn-action">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20a2 2 0 002 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM9 14H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2z"/></svg>
+                    Agregar al Calendario
+                </button>
+            </div>
 
             <!-- CUENTA REGRESIVA -->
-            <div class="section-tag">Cuenta Atrás</div>
-            <div class="countdown-grid" id="countdown-timer">
+            <div class="countdown-grid animate-on-scroll" id="countdown-timer">
                 <div class="countdown-item"><span class="countdown-number" id="days">00</span><span class="countdown-label">Días</span></div>
                 <div class="countdown-item"><span class="countdown-number" id="hours">00</span><span class="countdown-label">Hrs</span></div>
                 <div class="countdown-item"><span class="countdown-number" id="minutes">00</span><span class="countdown-label">Min</span></div>
                 <div class="countdown-item"><span class="countdown-number" id="seconds">00</span><span class="countdown-label">Seg</span></div>
             </div>
 
-            <div class="divider"></div>
+            <div class="divider animate-on-scroll"></div>
 
             <div class="info-grid">
-                
                 <!-- CEREMONIA -->
-                <div class="info-block">
+                <div class="info-block animate-on-scroll">
+                    <div class="ornament" style="font-size: 18px;">✧</div>
                     <div class="info-label">Ceremonia Religiosa</div>
                     <div class="info-value-main">08.AGO.2026</div>
                     <div class="info-value-sub">Sábado a las 2:00 p.m.<br>Iglesia</div>
                     
                     <div class="map-card">
                         <img src="assets/ceremonia.jpg" alt="Iglesia" class="location-img">
-                        <a href="https://maps.app.goo.gl/FC9RAiEpkNWD46a97" target="_blank" class="btn-link">Ver Ubicación en Maps</a>
+                        <a href="https://maps.app.goo.gl/FC9RAiEpkNWD46a97" target="_blank" class="btn-action">Ubicación GPS</a>
                     </div>
                 </div>
 
-                <div class="divider"></div>
+                <div class="divider animate-on-scroll"></div>
 
                 <!-- RECEPCIÓN -->
-                <div class="info-block">
+                <div class="info-block animate-on-scroll">
+                    <div class="ornament" style="font-size: 18px;">✧</div>
                     <div class="info-label">Recepción</div>
                     <div class="info-value-main">Casa de mis Abuelitos</div>
                     <div class="info-value-sub">A partir de las 3:30 p.m.</div>
                     
                     <div class="map-card">
                         <img src="assets/recepcion.jpg" alt="Recepción" class="location-img">
-                        <a href="https://maps.app.goo.gl/5zsSfxsvALTsVMiq7?g_st=ic" target="_blank" class="btn-link">Ver Ubicación en Maps</a>
+                        <a href="https://maps.app.goo.gl/5zsSfxsvALTsVMiq7?g_st=ic" target="_blank" class="btn-action">Ubicación GPS</a>
                     </div>
                 </div>
             </div>
 
-            <div class="divider"></div>
+            <div class="divider animate-on-scroll"></div>
 
             <!-- DRESS CODE -->
-            <div class="info-block">
+            <div class="info-block animate-on-scroll">
                 <div class="info-label">Código de Vestimenta</div>
-                <div class="info-value-main" style="font-size: 18px; letter-spacing: 4px;">CASUAL</div>
-                <div class="info-value-sub">Tonos sugeridos: Beige y Blanco</div>
+                <div class="info-value-main" style="font-size: 22px; letter-spacing: 5px;">CASUAL</div>
+                <div class="info-value-sub" style="font-size: 16px;">Tonos sugeridos: Beige y Blanco</div>
             </div>
 
-            <div class="divider"></div>
+            <div class="divider animate-on-scroll"></div>
             
             <!-- MESA DE REGALOS -->
-            <div class="section-tag">Mesa de Regalos</div>
-            <p class="phrase" style="font-size: 16px; margin-bottom: 20px;">Tu presencia es el regalo más hermoso que podemos recibir.<br>Si deseas tener un detalle con Emmanuel, puedes hacerlo a través de nuestra mesa de regalos.</p>
+            <div class="section-tag animate-on-scroll">Mesa de Regalos</div>
+            <p class="phrase animate-on-scroll" style="font-size: 18px; margin-bottom: 25px;">Tu presencia es el regalo más hermoso que podemos recibir.<br>Si deseas tener un detalle con Emmanuel, puedes hacerlo a través de nuestra mesa de regalos.</p>
 
-            <div style="margin-bottom: 25px; padding: 0 15px;">
-                <div style="font-family: 'Cinzel', serif; font-size: 15px; font-weight: 600; color: var(--olive-dark); letter-spacing: 3px; margin-bottom: 5px;">LIVERPOOL</div>
-                <div style="font-family: 'Montserrat', sans-serif; font-size: 12px; color: var(--text-muted); letter-spacing: 1px; margin-bottom: 20px;">Evento: 52029760</div>
-                <a href="https://mesaderegalos.liverpool.com.mx/milistaderegalos/52029760" target="_blank" class="btn-link" style="width: auto; padding: 12px 35px;">Ver Mesa de Regalos</a>
+            <div class="animate-on-scroll" style="margin-bottom: 35px; padding: 0 15px;">
+                <div style="font-family: 'Cinzel', serif; font-size: 18px; font-weight: 700; color: var(--olive-dark); letter-spacing: 4px; margin-bottom: 8px;">LIVERPOOL</div>
+                <div style="font-family: 'Montserrat', sans-serif; font-size: 14px; color: var(--text-muted); letter-spacing: 2px; margin-bottom: 25px; font-weight: 600;">Evento: 52029760</div>
+                <a href="https://mesaderegalos.liverpool.com.mx/milistaderegalos/52029760" target="_blank" class="btn-action btn-solid" style="max-width: 300px;">Ver Mesa de Regalos</a>
             </div>
 
-            <div class="divider"></div>
+            <div class="divider animate-on-scroll"></div>
             
             <!-- CONFIRMACIÓN -->
-            <div class="section-tag">Confirmación</div>
-            <p class="phrase" style="font-size: 18px; margin-bottom: 25px; font-weight: 400;">Nos llenaría de ilusión que nos acompañes.</p>
+            <div class="section-tag animate-on-scroll">Confirmación</div>
+            <p class="phrase animate-on-scroll" style="font-size: 22px; margin-bottom: 30px; font-weight: 400;">Nos llenaría de ilusión que nos acompañes.</p>
             
-            <a href="https://wa.me/525554509941?text=¡Hola!%20Confirmo%20mi%20asistencia%20al%20Bautizo%20de%20Emmanuel.%20Mi%20nombre%20es:__%20Nombre%20del%20acompañante:__%20¡Gracias!" target="_blank" class="btn-whatsapp">Confirmar Asistencia</a>
+            <div class="animate-on-scroll">
+                <a href="https://wa.me/525554509941?text=¡Hola!%20Confirmo%20mi%20asistencia%20al%20Bautizo%20de%20Emmanuel.%20Mi%20nombre%20es:__%20Nombre%20del%20acompañante:__%20¡Gracias!" target="_blank" class="btn-action btn-solid" style="max-width: 350px;">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51h-.57c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    Confirmar Asistencia
+                </a>
+            </div>
             
         </div>
     </main>
@@ -306,15 +375,14 @@
         const iconPlay = document.getElementById("icon-play");
         const iconPause = document.getElementById("icon-pause");
 
+        // FUNCIONES PRINCIPALES
         function openInvitation() {
-            // Animación de la pantalla de entrada
             document.getElementById('welcome-screen').classList.add('open');
             
             setTimeout(() => {
                 document.body.classList.add('content-active');
-                createFlowerPetals();
+                createSparkles();
                 
-                // Reproducir audio y mostrar botón
                 audio.play().catch(e => console.log("Auto-play prevenido por el navegador."));
                 audioBtn.classList.add('visible');
             }, 600);
@@ -332,12 +400,62 @@
             }
         }
 
-        // Sistema de Cuenta Regresiva
+        // SISTEMA DE INTERSECCIÓN PARA ANIMACIONES EN SCROLL
+        document.addEventListener("DOMContentLoaded", function() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Animamos solo una vez
+                    }
+                });
+            }, observerOptions);
+
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+            animatedElements.forEach(el => observer.observe(el));
+        });
+
+        // DESCARGA DE CALENDARIO (.ICS)
+        function downloadICS() {
+            // Estructura del evento .ics compatible universalmente
+            const icsData = [
+                "BEGIN:VCALENDAR",
+                "VERSION:2.0",
+                "PRODID:-//Invytia//Bautizo Emmanuel//ES",
+                "BEGIN:VEVENT",
+                "URL:https://maps.app.goo.gl/FC9RAiEpkNWD46a97",
+                "DTSTART:20260808T200000Z", // Hora UTC (Ajustado para hora centro MX: 14:00)
+                "DTEND:20260808T233000Z",   // Hora final UTC (Recepción termina aprox 17:30)
+                "SUMMARY:Bautizo de Emmanuel",
+                "DESCRIPTION:Nos llenaría de ilusión que nos acompañes.\\n\\nCeremonia Religiosa: 2:00 PM\\nRecepción (Casa de mis Abuelitos): 3:30 PM",
+                "LOCATION:Iglesia (https://maps.app.goo.gl/FC9RAiEpkNWD46a97)",
+                "END:VEVENT",
+                "END:VCALENDAR"
+            ].join("\n");
+
+            // Crear y descargar archivo
+            const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Bautizo_Emmanuel.ics';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        // CUENTA REGRESIVA
         const countdownInterval = setInterval(function() {
             const timeLeft = targetDateObj.getTime() - new Date().getTime();
             if (timeLeft < 0) {
                 clearInterval(countdownInterval);
-                document.getElementById("countdown-timer").innerHTML = "<div style='font-family:\"Cinzel\", serif; color:var(--olive-dark); letter-spacing:2px; font-weight:600; padding: 10px;'>¡Llegó el Gran Día!</div>";
+                document.getElementById("countdown-timer").innerHTML = "<div style='font-family:\"Cinzel\", serif; color:var(--olive-dark); font-size:24px; letter-spacing:3px; font-weight:700; padding: 20px;'>¡Llegó el Gran Día!</div>";
                 return;
             }
             document.getElementById("days").innerText = Math.floor(timeLeft / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
@@ -346,22 +464,27 @@
             document.getElementById("seconds").innerText = Math.floor((timeLeft % (1000 * 60)) / 1000).toString().padStart(2, '0');
         }, 1000);
 
-        // Decoración animada de fondo (hojas / destellos)
-        function createFlowerPetals() {
-            const container = document.getElementById('lanterns-container');
-            const colors = ['rgba(204, 163, 96, 0.6)', 'rgba(123, 133, 90, 0.4)', 'rgba(75, 83, 32, 0.3)'];
-            for (let i = 0; i < 20; i++) {
-                const petal = document.createElement('div');
-                petal.classList.add('flower-petal');
-                const width = Math.random() * 8 + 6;
-                petal.style.width = `${width}px`; 
-                petal.style.height = `${width * 1.3}px`;
-                petal.style.left = `${Math.random() * 100}%`; 
-                petal.style.bottom = `-30px`;
-                petal.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                petal.style.animationDuration = `${Math.random() * 12 + 8}s`;
-                petal.style.animationDelay = `${Math.random() * 5}s`;
-                container.appendChild(petal);
+        // DECORACIÓN: DESTELLOS (SPARKLES) MÁS ELEGANTES
+        function createSparkles() {
+            const container = document.getElementById('sparkles-container');
+            // Reducimos la cantidad para mantenerlo sutil y no saturar
+            for (let i = 0; i < 25; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.classList.add('sparkle');
+                
+                // Tamaños muy pequeños, como polvo de estrellas
+                const size = Math.random() * 4 + 2; 
+                sparkle.style.width = `${size}px`; 
+                sparkle.style.height = `${size}px`;
+                
+                sparkle.style.left = `${Math.random() * 100}%`; 
+                sparkle.style.top = `${Math.random() * 100}%`;
+                
+                // Duración y retrasos aleatorios para que se vea natural
+                sparkle.style.animationDuration = `${Math.random() * 4 + 3}s, ${Math.random() * 20 + 15}s`;
+                sparkle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                container.appendChild(sparkle);
             }
         }
     </script>
