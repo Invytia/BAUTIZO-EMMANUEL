@@ -83,7 +83,6 @@
            ------------------------------------------- */
         #main-invitation {
             min-height: 100vh;
-            /* Se removió la imagen de fondo blanca para resaltar el color block */
             background-color: var(--bg-main); position: relative;
             display: flex; flex-direction: column; align-items: center;
             padding: 80px 20px; opacity: 0; transform: translateY(20px);
@@ -117,6 +116,18 @@
         }
         .animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
         .delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; } .delay-3 { transition-delay: 0.3s; }
+
+        /* Imagen Hero */
+        .hero-container {
+            width: 100%; height: 350px; margin: 25px 0; border-radius: 8px;
+            overflow: hidden; border: 1px solid rgba(212, 181, 114, 0.5);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3); position: relative;
+        }
+        .hero-img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 1.5s ease;
+        }
+        .hero-container:hover .hero-img { transform: scale(1.05); }
 
         /* Textos Generales */
         .section-tag { font-family: 'Cinzel', serif; font-size: 15px; letter-spacing: 5px; color: var(--gold-primary); text-transform: uppercase; margin-bottom: 15px; font-weight: 700; }
@@ -224,6 +235,7 @@
             .welcome-name { font-size: 60px; }
             .main-title { font-size: 70px; }
             .invitation-frame { padding: 50px 20px; }
+            .hero-container { height: 250px; }
             .phrase { font-size: 20px; }
             .color-block { padding: 30px 20px; }
             .color-block .info-value-main { font-size: 22px; }
@@ -265,10 +277,15 @@
 
             <div class="section-tag animate-on-scroll">Mi Bautizo</div>
             
-            <p class="phrase animate-on-scroll delay-1" style="margin-top: 20px;">Con la bendición de Dios y el amor de nuestra familia, te invitamos a celebrar el Santo Bautizo de nuestro amado hijo.</p>
+            <!-- IMAGEN HERO AÑADIDA AQUÍ -->
+            <div class="hero-container animate-on-scroll delay-1">
+                <img src="assets/hero.jpg" alt="Emmanuel" class="hero-img">
+            </div>
+            
+            <p class="phrase animate-on-scroll delay-2" style="margin-top: 25px;">Con la bendición de Dios y el amor de nuestra familia, te invitamos a celebrar el Santo Bautizo de nuestro amado hijo.</p>
 
-            <h1 class="main-title animate-on-scroll delay-2">Emmanuel</h1>
-            <div class="sub-title animate-on-scroll delay-3">~ Dios con nosotros ~</div>
+            <h1 class="main-title animate-on-scroll">Emmanuel</h1>
+            <div class="sub-title animate-on-scroll delay-1">~ Dios con nosotros ~</div>
             
             <div class="ornament animate-on-scroll">✧</div>
 
@@ -483,7 +500,6 @@
 
             if (name === "" || status === "") {
                 alert("Por favor, ingresa tu nombre y selecciona si asistirás para poder confirmar.");
-                // Resaltar los campos vacíos
                 if(name === "") nameInput.style.borderColor = "#ff6b6b";
                 if(status === "") statusSelect.style.borderColor = "#ff6b6b";
                 
