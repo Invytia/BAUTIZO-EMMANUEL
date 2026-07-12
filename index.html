@@ -245,18 +245,15 @@
 </head>
 <body>
 
-    <!-- Reproductor de Audio (Oculto) -->
     <audio id="bg-music" loop>
-        <source src="assets/song.mp3" type="audio/mpeg">
+        <source src="./assets/song.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- Botón Sticky de Audio -->
     <div id="audio-btn" onclick="toggleAudio()">
         <svg id="icon-pause" viewBox="0 0 24 24" style="display: block;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
         <svg id="icon-play" viewBox="0 0 24 24" style="display: none;"><path d="M8 5v14l11-7z"/></svg>
     </div>
 
-    <!-- PANTALLA DE ENTRADA -->
     <div id="welcome-screen">
         <div class="welcome-border">
             <div class="welcome-tag">Mi Bautizo</div>
@@ -267,19 +264,16 @@
     </div>
 
     <main id="main-invitation">
-        <!-- Contenedor para los destellos dorados -->
         <div id="sparkles-container" style="position: absolute; top:0; left:0; width:100%; height:100%; overflow:hidden; pointer-events:none; z-index:1;"></div>
 
         <div class="invitation-frame">
-            <!-- Ornamentos en las esquinas -->
             <div class="corner-tl"></div><div class="corner-tr"></div>
             <div class="corner-bl"></div><div class="corner-br"></div>
 
             <div class="section-tag animate-on-scroll">Mi Bautizo</div>
             
-            <!-- IMAGEN HERO AÑADIDA AQUÍ -->
             <div class="hero-container animate-on-scroll delay-1">
-                <img src="assets/hero.jpg" alt="Emmanuel" class="hero-img">
+                <img src="./assets/hero.jpg" alt="Emmanuel" class="hero-img">
             </div>
             
             <p class="phrase animate-on-scroll delay-2" style="margin-top: 25px;">Con la bendición de Dios y el amor de nuestra familia, te invitamos a celebrar el Santo Bautizo de nuestro amado hijo.</p>
@@ -296,7 +290,6 @@
 
             <div class="divider animate-on-scroll"></div>
             
-            <!-- SECCIÓN PADRES Y PADRINOS -->
             <div class="info-block animate-on-scroll">
                 <div class="info-label">Mis Padres</div>
                 <div class="name-main">Santiago Olvera Gomez</div>
@@ -309,7 +302,6 @@
                 <div class="name-main">Karen Gracia</div>
             </div>
 
-            <!-- CUENTA REGRESIVA (Estilo Color Block) -->
             <div class="countdown-grid animate-on-scroll" id="countdown-timer">
                 <div class="countdown-item"><span class="countdown-number" id="days">00</span><span class="countdown-label">Días</span></div>
                 <div class="countdown-item"><span class="countdown-number" id="hours">00</span><span class="countdown-label">Hrs</span></div>
@@ -319,7 +311,6 @@
 
             <div class="divider animate-on-scroll"></div>
 
-            <!-- EVENTO Y CALENDARIO WIDGET (Color Block) -->
             <div class="section-tag animate-on-scroll">Reserva la Fecha</div>
             
             <div class="color-block animate-on-scroll delay-1" style="max-width: 380px; margin: 20px auto;">
@@ -344,30 +335,27 @@
             <div class="divider animate-on-scroll"></div>
 
             <div class="info-grid">
-                <!-- CEREMONIA (Color Block Beige) -->
                 <div class="color-block animate-on-scroll">
                     <div class="ornament" style="font-size: 18px; color: var(--frame-bg);">✧</div>
                     <div class="info-label">Ceremonia Religiosa</div>
                     <div class="info-value-main">08.AGO.2026</div>
                     <div class="info-value-sub">Sábado a las 2:00 p.m.<br>Iglesia</div>
-                    <img src="assets/ceremonia.jpg" alt="Iglesia" class="location-img">
+                    <img src="./assets/ceremonia.jpg" alt="Iglesia" class="location-img">
                     <a href="https://maps.app.goo.gl/FC9RAiEpkNWD46a97" target="_blank" class="btn-block-action">Abrir Ubicación GPS</a>
                 </div>
 
-                <!-- RECEPCIÓN (Color Block Beige) -->
                 <div class="color-block animate-on-scroll delay-1">
                     <div class="ornament" style="font-size: 18px; color: var(--frame-bg);">✧</div>
                     <div class="info-label">Recepción</div>
                     <div class="info-value-main">Casa de mis Abuelitos</div>
                     <div class="info-value-sub">A partir de las 3:30 p.m.</div>
-                    <img src="assets/recepcion.jpg" alt="Recepción" class="location-img">
+                    <img src="./assets/recepcion.jpg" alt="Recepción" class="location-img">
                     <a href="https://maps.app.goo.gl/5zsSfxsvALTsVMiq7?g_st=ic" target="_blank" class="btn-block-action">Abrir Ubicación GPS</a>
                 </div>
             </div>
 
             <div class="divider animate-on-scroll"></div>
 
-            <!-- DRESS CODE -->
             <div class="info-block animate-on-scroll">
                 <div class="info-label">Código de Vestimenta</div>
                 <div class="name-main" style="font-size: 24px; letter-spacing: 5px; color: var(--gold-primary);">CASUAL</div>
@@ -376,7 +364,6 @@
 
             <div class="divider animate-on-scroll"></div>
             
-            <!-- MESA DE REGALOS (Color Block) -->
             <div class="section-tag animate-on-scroll">Mesa de Regalos</div>
             <p class="phrase animate-on-scroll" style="font-size: 18px; margin-bottom: 20px;">Tu presencia es el regalo más hermoso que podemos recibir. Si deseas tener un detalle con Emmanuel, puedes hacerlo a través de nuestra mesa de regalos.</p>
 
@@ -388,7 +375,6 @@
 
             <div class="divider animate-on-scroll"></div>
             
-            <!-- CONFIRMACIÓN CON FORMULARIO -->
             <div class="section-tag animate-on-scroll">Confirmación</div>
             <p class="phrase animate-on-scroll" style="font-size: 22px; margin-bottom: 20px; font-weight: 400;">Nos llenaría de ilusión que nos acompañes.</p>
             
